@@ -56,8 +56,9 @@ for rootfile in qondor.scope.rootfiles:
         dump_score_npz('in.root', model, 'out.npz')
         seutils.cp(
            'out.npz',
-           'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_QCD_03152022_'
+           #'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_QCD_03152022_'
            #'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_QCD_03142022_dataStudy_'
+           'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/UltraLegacy_npz/QCD_04102022_masseq_/'
            + '/'.join(rootfile.split('/')[-3:]).replace('.root', '.npz'),
            implementation='gfal', env=qondor.BARE_ENV),
 

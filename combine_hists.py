@@ -26,19 +26,28 @@ def get_scores(rootfile, model):
             cutflow.plus_one('total')
             if not preselection(event, cutflow): continue
             subl = get_subl(event)
+            subl.genmt, subl.genrt = calculate_mt_rt(subl, event[b'GenMET'], event[b'GenMETPhi'])
             subl.mt, subl.rt = calculate_mt_rt(subl, event[b'MET'], event[b'METPhi'])
+            genmet = event[b'GenMET']
+            met = event[b'MET']
             subl.mass = calculate_mass(subl)
+            subl.massgenmet = calculate_massmet(subl, event[b'GenMET'], event[b'GenMETPhi'])
+            subl.massgenmetpz = calculate_massmetpz(subl, event[b'GenMET'], event[b'GenMETPhi'])
+            subl.massgenmetpzm = calculate_massmetpzm(subl, event[b'GenMET'], event[b'GenMETPhi'])
             subl.massmet = calculate_massmet(subl, event[b'MET'], event[b'METPhi'])
+            subl.massmetpz = calculate_massmetpz(subl, event[b'MET'], event[b'METPhi'])
+            subl.massmetpzm = calculate_massmetpzm(subl, event[b'MET'], event[b'METPhi'])
             trig = event[b'JetsAK8.fCoordinates.fPt'][0] 
             subl.dphi = calc_dphi(subl.phi, event[b'METPhi'])
+            subl.gendphi = calc_dphi(subl.phi, event[b'GenMETPhi'])
             X.append([
                 subl.girth, subl.axisminor, subl.ecfM2b1, subl.ecfD2b1, subl.ecfC2b1,
                 subl.ecfN2b2, subl.metdphi, subl.ptD, subl.multiplicity,
                 ])
-            X_histogram.append([subl.mt, subl.rt, subl.pt, subl.energy])
+            X_histogram.append([subl.mt, subl.genmt, subl.rt, subl.genrt, subl.pt, subl.energy])
             X_allvar.append([
                 subl.girth, subl.axisminor, subl.ecfM2b1, subl.ecfD2b1, subl.ecfC2b1,
-                subl.ecfN2b2, subl.metdphi, subl.ptD, subl.multiplicity, trig, subl.dphi, subl.eta, subl.pz, subl.mass, subl.massmet,
+                subl.ecfN2b2, subl.metdphi, subl.ptD, subl.multiplicity, trig, subl.dphi, subl.gendphi, subl.eta, subl.pz, subl.mass, subl.massmet, subl.massmetpz, subl.massmetpzm, subl.massgenmet, subl.massgenmetpz, subl.massgenmetpzm, met, genmet
                 ])
     except IndexError:
         print(f'Problem with {rootfile}; saving {cutflow["preselection"]} good entries')
@@ -54,8 +63,8 @@ def get_scores(rootfile, model):
     X_allvar = np.array(X_allvar)
     return dict(
         score=score,
-        **{key: X_histogram[:,index] for index, key in enumerate(['mt', 'rt', 'pt', 'energy'])},
-        **{key: X_allvar[:,index] for index, key in enumerate(['girth', 'axisminor', 'ecfM2b1', 'ecfD2b1', 'ecfC2b1', 'ecfN2b2', 'metphi', 'ptD', 'multiplicity', 'trig', 'dphi', 'eta', 'pz', 'mass', 'massmet'])},
+        **{key: X_histogram[:,index] for index, key in enumerate(['mt', 'genmt', 'rt', 'genrt', 'pt', 'energy'])},
+        **{key: X_allvar[:,index] for index, key in enumerate(['girth', 'axisminor', 'ecfM2b1', 'ecfD2b1', 'ecfC2b1', 'ecfN2b2', 'metphi', 'ptD', 'multiplicity', 'trig', 'dphi', 'gendphi', 'eta', 'pz', 'mass', 'massmet', 'massmetpz', 'massmetpzm', 'massgenmet', 'massgenmetpz', 'massgenmetpzm', 'met', 'genmet'])},
         **cutflow.counts
         )
 

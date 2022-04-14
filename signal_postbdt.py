@@ -6,15 +6,15 @@ print('Compiling list of rootfiles...')
 # mz 250, 300, 350, 400, 450, 500, 550
 sig_rootfiles = [ seutils.ls_wildcard(d + '/*.root') for d in [
     'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Summer21/TreeMaker/genjetpt375_mz250_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Summer21/TreeMaker/genjetpt375_mz300_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Summer21/TreeMaker/genjetpt375_mz350_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz250_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz300_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz350_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz400_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz450_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz500_mdark10_rinv0.3',
-    #'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz550_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Summer21/TreeMaker/genjetpt375_mz300_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Summer21/TreeMaker/genjetpt375_mz350_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz250_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz300_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz350_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz400_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz450_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz500_mdark10_rinv0.3',
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/TreeMaker/genjetpt375_mz550_mdark10_rinv0.3',
     ]]
 sig_rootfiles = list(itertools.chain.from_iterable(sig_rootfiles))
 
@@ -52,7 +52,7 @@ for rootfile in qondor.scope.rootfiles:
         seutils.cp(
            'out.npz',
            #'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_Sig_03142022_'
-           'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_Sig_04062022_masseq_test_'
+           'gsiftp://hepcms-gridftp.umd.edu//mnt/hadoop/cms/store/user/snabili/NPZfiles_PostBDT/BDT_Sig_04102022_masseq_met_'
            + '/'.join(rootfile.split('/')[-3:]).replace('.root', '.npz'),
            implementation='gfal', env=qondor.BARE_ENV),
 
