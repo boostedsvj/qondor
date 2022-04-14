@@ -31,7 +31,7 @@ expected_outfile = cmssw.run_step('step0_GRIDPACK', 'step1_LHE-GEN', physics)
 if not qondor.BATCHMODE: seutils.drymode()
 seutils.cp(
     expected_outfile,
-    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_Sept28/GEN/'
+    'root://cmseos.fnal.gov//store/user/lpcdarkqcd/MCSamples_UL_Spring2022/GEN/'
     'genjetpt375_{date}_mz{mz:.0f}_mdark{mdark:.0f}_rinv{rinv}/{i}.root'
     .format(
         date = qondor.get_submission_timestr(),
