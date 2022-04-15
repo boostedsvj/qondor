@@ -12,7 +12,7 @@ for i in range(0,400):
 import qondor, seutils, os.path as osp
 
 cmssw = qondor.svj.init_cmssw(
-    'root://cmseos.fnal.gov//store/user/lpcsusyhad/SVJ2017/boosted/svjproduction-tarballs/CMSSW_10_6_29_latest_afce000_el7_gen_2018UL.tar.gz'
+    'root://cmseos.fnal.gov//store/user/lpcsusyhad/SVJ2017/boosted/svjproduction-tarballs/CMSSW_10_6_29_latest_afce000_el7_miniaod_2018UL.tar.gz'
     )
 
 physics = qondor.svj.Physics({
