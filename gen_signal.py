@@ -4,7 +4,7 @@ htcondor(
     ['RU', 'FNAL', 'IFCA', 'KIPT', 'T3_IT_Trieste', 'T2_TR_METU', 'T2_US_Vanderbilt', 'T2_PK_NCP']
     )
 
-for i in range(0,400):
+for i in range(1,400):
     for mz in [250,]:
         submit(i=i, mz=mz, mdark=10, rinv=0.3)
 """# endsubmit
@@ -26,7 +26,7 @@ physics = qondor.svj.Physics({
     })
 
 cmssw.download_madgraph_tarball(physics)
-expected_outfile = cmssw.run_step('step0_GRIDPACK', 'step1_LHE-GEN', physics)
+expected_outfile = cmssw.run_step('step0_GRIDPACK', 'step_LHE-GEN', physics)
 
 if not qondor.BATCHMODE: seutils.drymode()
 seutils.cp(
