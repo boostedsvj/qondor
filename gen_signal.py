@@ -20,7 +20,7 @@ physics = qondor.svj.Physics({
     'mz' : qondor.scope.mz,
     'mdark' : qondor.scope.mdark,
     'rinv' : qondor.scope.rinv,
-    'mingenjetpt' : 375.,
+    'boost': 375.,
     'max_events' : 100000,
     'part' : qondor.scope.i
     })
