@@ -78,7 +78,7 @@ for rootfile in qondor.scope.rootfiles:
 
     cmssw.run_commands([
         'cd TreeMaker/Production/test',
-        'cmsRun runMakeTreeFromMiniAOD_cfg.py'
+        '_CONDOR_CHIRP_CONFIG="" cmsRun runMakeTreeFromMiniAOD_cfg.py'
         ' numevents=-1'
         ' outfile=outfile'
         ' scenario={}'
